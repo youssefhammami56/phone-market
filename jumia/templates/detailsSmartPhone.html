@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <h1>{{ name }}</h1>
+        <div class="col-md-6">
+            <img src="{{ image }}" class="img-fluid" alt="{{ name }}">
+        </div>
+        <div class="col-md-6">
+           
+            <p><strong>Prix: </strong>{{ price }}</p>
+            <hr>
+            <h2>Caractéristiques:</h2>
+            <ul>
+                {% for caract in characteristics %}
+                    <li>{{ caract }}</li>
+                {% endfor %}
+            </ul>
+            <hr>
+            <h2>Description technique:</h2>
+            <ul>
+                {% for techDesc in technical_description %}
+                    <li>{{ techDesc }}</li>
+                {% endfor %}
+            </ul>
+            <hr>
+            <h2>Description:</h2>
+            {% for desc in description %}
+                <p>{{ desc }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

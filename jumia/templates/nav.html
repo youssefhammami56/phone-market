@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>welcome</title>
+    <style>
+      nav {
+        background-color: #7B1FA2;
+        overflow: hidden;
+      }
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color:  #7B1FA2;;
+      }
+      nav li {
+        float: left;
+      }
+      nav li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      nav li a:hover {
+        background-color: #111;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+
+      </ul>
+    </nav>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

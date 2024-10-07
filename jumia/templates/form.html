@@ -1,0 +1,81 @@
+<html>
+{% load static %}
+{% include "nav.html" %}
+{% load bootstrap4 %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Smartphone</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'  %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .flex-item {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            flex: 0 0 250px;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1> Our Smartphones</h1>
+    </center>
+    <br/>
+    <center>
+        <form method="post" action="" border="1">
+            {% csrf_token %}
+            <div class="row" style="margin-left: 25%;">
+                <div class="col-sm-4">
+                    <select name="nomSmart" class="form-control" >
+                        <option value="">-- Select an option --</option>
+                        {% for m in marque %}
+                            <option value="{{m.nom}}">{{m.nom}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <input type="number" name="prixMax" placeholder="Prix maximale" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <input type="submit" value="Chercher" class="btn btn-primary" style="margin-left: -90px;">
+                </div>
+            </div>
+        </form>
+    {% load bootstrap4 %}
+    <br/>
+    <div class="container">
+        <div class="card mb-6"> 
+            <div class="card-body">
+                <div class="flex-container">
+                    {% for item in data %}
+                        <div class="flex-item">
+                            <p><strong>Nom Produit:</strong> {{ item.nom }}</p>
+                            <p><strong>Marque:</strong> {{ item.marque }}</p>
+                            <p><strong>Prix sans remise:</strong> {{ item.prix }}</p>
+                            <p><strong>Remise:</strong> {{ item.pour }}</p>
+                            <p><strong>prix en remise:</strong> {{ item.remise }}</p>
+                            <p><strong>Lien detail:</strong> <a href="{{item.lien }}">{{item.lien }}</a></p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <br/>
+                {% if ok == True %}
+                    {% for number in numbers %}
+                        <a href="?page={{ number.value }}" class="btn btn-primary">{{ number.value }}</a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    </center>
+</body>
+</html>
